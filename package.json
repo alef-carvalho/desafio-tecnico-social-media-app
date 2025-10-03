@@ -1,0 +1,28 @@
+{
+  "name": "social-media-app",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"yarn workspace @social-media/backend dev\" \"yarn workspace @social-media/frontend dev\"",
+    "build": "yarn workspaces foreach -A run build",
+    "test": "yarn workspaces foreach -A run test",
+    "test:backend": "yarn workspace @social-media/backend test",
+    "test:frontend": "yarn workspace @social-media/frontend test",
+    "clean": "yarn workspaces foreach -A run clean && rm -rf node_modules",
+    "backend:prisma:generate": "yarn workspace @social-media/backend prisma:generate",
+    "backend:prisma:migrate": "yarn workspace @social-media/backend prisma:migrate",
+    "backend:prisma:seed": "yarn workspace @social-media/backend prisma:seed",
+    "backend:prisma:migrate:deploy": "yarn workspace @social-media/backend prisma migrate deploy"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=1.22.0"
+  }
+}
